@@ -1,0 +1,84 @@
+{
+  parserClass="top.subkey.key.plugin.parser.KeyParser"
+  parserUtilClass="top.subkey.key.plugin.parser.KeyParserUtil"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Key"
+  psiImplClassSuffix="Impl"
+  psiPackage="top.subkey.key.plugin.psi"
+  psiImplPackage="top.subkey.key.plugin.psi.impl"
+
+  elementTypeHolderClass="top.subkey.key.plugin.psi.KeyTypes"
+  elementTypeClass="top.subkey.key.plugin.psi.KeyElementType"
+  tokenTypeClass="top.subkey.key.plugin.psi.KeyTokenType"
+
+  tokens = [
+    LBRACE      =  '{'
+    RBRACE      =  '}'
+    LBRACK      =  '['
+    RBRACK      =  ']'
+    LPAREN      =  '('
+    RPAREN      =  ')'
+    COLON       =  ':'
+    COLONCOLON  =  '::'
+    SEMICOLON   =  ';'
+    COMMA       =  ','
+    EQ          =  '='
+    EXCLEQ      =  '!='
+    EQEQ        =  '=='
+    SHA         =  '#'
+    EXCL        =  '!'
+    PLUSEQ      =  '+='
+    PLUS        =  '+'
+    MINUSEQ     =  '-='
+    MINUS       =  '-'
+    OREQ        =  '|='
+    ANDAND      =  '&&'
+    ANDEQ       =  '&='
+    AND         =  '&'
+    OR          =  '|'
+    LT          =  '<'
+    XOREQ       =  '^='
+    XOR         =  '^'
+    MULEQ       =  '*='
+    MUL         =  '*'
+    DIVEQ       =  '/='
+    DIV         =  '/'
+    REMEQ       =  '%='
+    REM         =  '%'
+    GT          =  '>'
+    DOT         =  '.'
+    DOTDOT      =  '..'
+    DOTDOTDOT   =  '...'
+    DOTDOTEQ    =  '..='
+    FAT_ARROW   =  '=>'
+    ARROW       =  '->'
+    Q           =  '?'
+    T           =  '~'
+    AT          =  '@'
+    UNDERSCORE  =  '_'
+    DOLLAR      =  '$'
+    PIPE        =  '|>'
+  ]
+}
+
+keyFile ::= (statement|COMMENT)*
+statement ::= (
+    let_statement |
+    const_statement
+    )
+let_statement ::= LET assign_def
+const_statement ::= CONST assign_def
+assign_def ::= assign_to ('<' | '=') expr
+assign_to ::= assign_single | assign_destruct
+assign_single ::= ID
+assign_destruct ::= '[' ids ']'
+private ids ::= (ID ',')* (ID ','?)
+
+// expr
+expr ::=
+    variant_expr |
+    INTEGER_LITERAL |
+    STRING_LITERAL
+variant_expr ::= ID

@@ -31,5 +31,8 @@
               fieldName="INSTANCE"
               language="Key"
               extensions="ks"/>
+      <lang.parserDefinition
+              language="Key"
+              implementationClass="top.subkey.key.plugin.KeyParserDefinition"/>
   </extensions>
 </idea-plugin>
