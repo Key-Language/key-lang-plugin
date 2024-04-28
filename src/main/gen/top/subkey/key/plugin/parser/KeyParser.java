@@ -178,7 +178,7 @@ public class KeyParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (statement|COMMENT)*
+  // (statement ';'? | COMMENT)*
   static boolean keyFile(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "keyFile")) return false;
     while (true) {
@@ -189,13 +189,33 @@ public class KeyParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // statement|COMMENT
+  // statement ';'? | COMMENT
   private static boolean keyFile_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "keyFile_0")) return false;
     boolean r;
-    r = statement(b, l + 1);
+    Marker m = enter_section_(b);
+    r = keyFile_0_0(b, l + 1);
     if (!r) r = consumeToken(b, COMMENT);
+    exit_section_(b, m, null, r);
     return r;
+  }
+
+  // statement ';'?
+  private static boolean keyFile_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "keyFile_0_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = statement(b, l + 1);
+    r = r && keyFile_0_0_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // ';'?
+  private static boolean keyFile_0_0_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "keyFile_0_0_1")) return false;
+    consumeToken(b, SEMICOLON);
+    return true;
   }
 
   /* ********************************************************** */

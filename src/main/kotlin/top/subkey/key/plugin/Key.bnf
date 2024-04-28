@@ -63,7 +63,7 @@
   ]
 }
 
-keyFile ::= (statement|COMMENT)*
+keyFile ::= (statement ';'? | COMMENT)*
 statement ::= (
     let_statement |
     const_statement
