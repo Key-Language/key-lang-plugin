@@ -27,4 +27,10 @@ public class KeyAssignSingleImpl extends ASTWrapperPsiElement implements KeyAssi
     else super.accept(visitor);
   }
 
+  @Override
+  @NotNull
+  public KeyIdentifier getIdentifier() {
+    return findNotNullChildByClass(KeyIdentifier.class);
+  }
+
 }

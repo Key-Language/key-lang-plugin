@@ -31,6 +31,10 @@ public class KeyVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitIdentifier(@NotNull KeyIdentifier o) {
+    visitNamedElement(o);
+  }
+
   public void visitLetStatement(@NotNull KeyLetStatement o) {
     visitPsiElement(o);
   }
@@ -40,6 +44,10 @@ public class KeyVisitor extends PsiElementVisitor {
   }
 
   public void visitVariantExpr(@NotNull KeyVariantExpr o) {
+    visitPsiElement(o);
+  }
+
+  public void visitNamedElement(@NotNull KeyNamedElement o) {
     visitPsiElement(o);
   }
 

@@ -37,5 +37,8 @@
         <lang.syntaxHighlighterFactory
                 language="Key"
                 implementationClass="top.subkey.key.plugin.KeySyntaxHighlighterFactory"/>
+        <lang.refactoringSupport
+                language="Key"
+                implementationClass="top.subkey.key.plugin.refactor.KeyRefactoringSupportProvider"/>
     </extensions>
 </idea-plugin>

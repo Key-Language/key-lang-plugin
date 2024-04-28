@@ -5,15 +5,15 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface KeyStatement extends PsiElement {
+public interface KeyIdentifier extends KeyNamedElement {
 
-  @Nullable
-  KeyConstStatement getConstStatement();
+  @NotNull
+  PsiElement setName(@NotNull String newName);
 
-  @Nullable
-  KeyExpr getExpr();
+  @NotNull
+  String getName();
 
-  @Nullable
-  KeyLetStatement getLetStatement();
+  @NotNull
+  PsiElement getNameIdentifier();
 
 }

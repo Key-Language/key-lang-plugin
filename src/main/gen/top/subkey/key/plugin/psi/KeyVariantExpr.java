@@ -7,4 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface KeyVariantExpr extends PsiElement {
 
+  @NotNull
+  KeyIdentifier getIdentifier();
+
 }

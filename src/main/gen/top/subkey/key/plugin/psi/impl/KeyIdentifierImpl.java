@@ -8,17 +8,16 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static top.subkey.key.plugin.psi.KeyTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import top.subkey.key.plugin.psi.*;
 
-public class KeyVariantExprImpl extends ASTWrapperPsiElement implements KeyVariantExpr {
+public class KeyIdentifierImpl extends KeyNamedElementImpl implements KeyIdentifier {
 
-  public KeyVariantExprImpl(@NotNull ASTNode node) {
+  public KeyIdentifierImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull KeyVisitor visitor) {
-    visitor.visitVariantExpr(this);
+    visitor.visitIdentifier(this);
   }
 
   @Override
@@ -29,8 +28,20 @@ public class KeyVariantExprImpl extends ASTWrapperPsiElement implements KeyVaria
 
   @Override
   @NotNull
-  public KeyIdentifier getIdentifier() {
-    return findNotNullChildByClass(KeyIdentifier.class);
+  public PsiElement setName(@NotNull String newName) {
+    return KeyPsiImplUtil.setName(this, newName);
+  }
+
+  @Override
+  @NotNull
+  public String getName() {
+    return KeyPsiImplUtil.getName(this);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getNameIdentifier() {
+    return KeyPsiImplUtil.getNameIdentifier(this);
   }
 
 }

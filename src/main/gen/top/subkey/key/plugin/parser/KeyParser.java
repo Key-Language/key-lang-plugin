@@ -73,13 +73,13 @@ public class KeyParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ID
+  // identifier
   public static boolean assign_single(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "assign_single")) return false;
     if (!nextTokenIs(b, ID)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, ID);
+    r = identifier(b, l + 1);
     exit_section_(b, m, ASSIGN_SINGLE, r);
     return r;
   }
@@ -126,7 +126,19 @@ public class KeyParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (ID ',')* (ID ','?)
+  // ID
+  public static boolean identifier(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "identifier")) return false;
+    if (!nextTokenIs(b, ID)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, ID);
+    exit_section_(b, m, IDENTIFIER, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // (identifier ',')* (identifier ','?)
   static boolean ids(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ids")) return false;
     if (!nextTokenIs(b, ID)) return false;
@@ -138,7 +150,7 @@ public class KeyParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (ID ',')*
+  // (identifier ',')*
   private static boolean ids_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ids_0")) return false;
     while (true) {
@@ -149,22 +161,23 @@ public class KeyParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // ID ','
+  // identifier ','
   private static boolean ids_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ids_0_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, ID, COMMA);
+    r = identifier(b, l + 1);
+    r = r && consumeToken(b, COMMA);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // ID ','?
+  // identifier ','?
   private static boolean ids_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ids_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, ID);
+    r = identifier(b, l + 1);
     r = r && ids_1_1(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
@@ -233,26 +246,27 @@ public class KeyParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // let_statement |
-  //     const_statement
+  //     const_statement |
+  //     expr
   public static boolean statement(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "statement")) return false;
-    if (!nextTokenIs(b, "<statement>", CONST, LET)) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, STATEMENT, "<statement>");
     r = let_statement(b, l + 1);
     if (!r) r = const_statement(b, l + 1);
+    if (!r) r = expr(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
   /* ********************************************************** */
-  // ID
+  // identifier
   public static boolean variant_expr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "variant_expr")) return false;
     if (!nextTokenIs(b, ID)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, ID);
+    r = identifier(b, l + 1);
     exit_section_(b, m, VARIANT_EXPR, r);
     return r;
   }

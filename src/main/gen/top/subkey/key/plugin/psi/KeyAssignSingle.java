@@ -7,4 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface KeyAssignSingle extends PsiElement {
 
+  @NotNull
+  KeyIdentifier getIdentifier();
+
 }

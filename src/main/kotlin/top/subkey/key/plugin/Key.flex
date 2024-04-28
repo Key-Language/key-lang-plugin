@@ -54,6 +54,9 @@ STRING_LITERAL = \" ( [^\\\"] | \\[^] )* ( \" {SUFFIX}? | \\ )?
     ({CRLF}|{WHITE_SPACE})+                         { return TokenType.WHITE_SPACE; }
     "="                                             { return EQ; }
     "<"                                             { return LT; }
+    "["                                             { return LBRACK; }
+    "]"                                             { return RBRACK; }
+    ","                                             { return COMMA; }
     ";"                                             { return SEMICOLON; }
     "let"                                           { return LET; }
     {IDENTIFIER}                                    { return ID; }

@@ -27,4 +27,10 @@ public class KeyAssignDestructImpl extends ASTWrapperPsiElement implements KeyAs
     else super.accept(visitor);
   }
 
+  @Override
+  @NotNull
+  public List<KeyIdentifier> getIdentifierList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, KeyIdentifier.class);
+  }
+
 }

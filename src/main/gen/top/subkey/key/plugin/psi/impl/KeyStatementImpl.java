@@ -35,6 +35,12 @@ public class KeyStatementImpl extends ASTWrapperPsiElement implements KeyStateme
 
   @Override
   @Nullable
+  public KeyExpr getExpr() {
+    return findChildByClass(KeyExpr.class);
+  }
+
+  @Override
+  @Nullable
   public KeyLetStatement getLetStatement() {
     return findChildByClass(KeyLetStatement.class);
   }

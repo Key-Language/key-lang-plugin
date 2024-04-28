@@ -14,6 +14,7 @@ public interface KeyTypes {
   IElementType ASSIGN_TO = new KeyElementType("ASSIGN_TO");
   IElementType CONST_STATEMENT = new KeyElementType("CONST_STATEMENT");
   IElementType EXPR = new KeyElementType("EXPR");
+  IElementType IDENTIFIER = new KeyElementType("IDENTIFIER");
   IElementType LET_STATEMENT = new KeyElementType("LET_STATEMENT");
   IElementType STATEMENT = new KeyElementType("STATEMENT");
   IElementType VARIANT_EXPR = new KeyElementType("VARIANT_EXPR");
@@ -91,6 +92,9 @@ public interface KeyTypes {
       }
       else if (type == EXPR) {
         return new KeyExprImpl(node);
+      }
+      else if (type == IDENTIFIER) {
+        return new KeyIdentifierImpl(node);
       }
       else if (type == LET_STATEMENT) {
         return new KeyLetStatementImpl(node);
