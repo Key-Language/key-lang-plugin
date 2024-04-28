@@ -5,12 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface KeyLetStatement extends PsiElement {
+public interface KeyIdentifiers extends PsiElement {
 
-  @Nullable
-  KeyAssignDef getAssignDef();
-
-  @Nullable
-  KeyFuncDef getFuncDef();
+  @NotNull
+  List<KeyIdentifier> getIdentifierList();
 
 }

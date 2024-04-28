@@ -23,6 +23,10 @@ public class KeyVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitBlock(@NotNull KeyBlock o) {
+    visitPsiElement(o);
+  }
+
   public void visitConstStatement(@NotNull KeyConstStatement o) {
     visitPsiElement(o);
   }
@@ -31,15 +35,31 @@ public class KeyVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitFuncDef(@NotNull KeyFuncDef o) {
+    visitPsiElement(o);
+  }
+
   public void visitIdentifier(@NotNull KeyIdentifier o) {
     visitNamedElement(o);
+  }
+
+  public void visitIdentifiers(@NotNull KeyIdentifiers o) {
+    visitPsiElement(o);
   }
 
   public void visitLetStatement(@NotNull KeyLetStatement o) {
     visitPsiElement(o);
   }
 
+  public void visitLockStatement(@NotNull KeyLockStatement o) {
+    visitPsiElement(o);
+  }
+
   public void visitStatement(@NotNull KeyStatement o) {
+    visitPsiElement(o);
+  }
+
+  public void visitStatements(@NotNull KeyStatements o) {
     visitPsiElement(o);
   }
 

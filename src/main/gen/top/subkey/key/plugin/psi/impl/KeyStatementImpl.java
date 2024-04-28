@@ -29,6 +29,12 @@ public class KeyStatementImpl extends ASTWrapperPsiElement implements KeyStateme
 
   @Override
   @Nullable
+  public KeyBlock getBlock() {
+    return findChildByClass(KeyBlock.class);
+  }
+
+  @Override
+  @Nullable
   public KeyConstStatement getConstStatement() {
     return findChildByClass(KeyConstStatement.class);
   }
@@ -43,6 +49,12 @@ public class KeyStatementImpl extends ASTWrapperPsiElement implements KeyStateme
   @Nullable
   public KeyLetStatement getLetStatement() {
     return findChildByClass(KeyLetStatement.class);
+  }
+
+  @Override
+  @Nullable
+  public KeyLockStatement getLockStatement() {
+    return findChildByClass(KeyLockStatement.class);
   }
 
 }

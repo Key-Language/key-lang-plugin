@@ -11,14 +11,14 @@ import static top.subkey.key.plugin.psi.KeyTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import top.subkey.key.plugin.psi.*;
 
-public class KeyLetStatementImpl extends ASTWrapperPsiElement implements KeyLetStatement {
+public class KeyStatementsImpl extends ASTWrapperPsiElement implements KeyStatements {
 
-  public KeyLetStatementImpl(@NotNull ASTNode node) {
+  public KeyStatementsImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull KeyVisitor visitor) {
-    visitor.visitLetStatement(this);
+    visitor.visitStatements(this);
   }
 
   @Override
@@ -28,15 +28,9 @@ public class KeyLetStatementImpl extends ASTWrapperPsiElement implements KeyLetS
   }
 
   @Override
-  @Nullable
-  public KeyAssignDef getAssignDef() {
-    return findChildByClass(KeyAssignDef.class);
-  }
-
-  @Override
-  @Nullable
-  public KeyFuncDef getFuncDef() {
-    return findChildByClass(KeyFuncDef.class);
+  @NotNull
+  public List<KeyStatement> getStatementList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, KeyStatement.class);
   }
 
 }

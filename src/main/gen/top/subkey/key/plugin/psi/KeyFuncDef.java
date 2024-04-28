@@ -5,21 +5,15 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface KeyStatement extends PsiElement {
+public interface KeyFuncDef extends PsiElement {
 
   @Nullable
   KeyBlock getBlock();
 
-  @Nullable
-  KeyConstStatement getConstStatement();
+  @NotNull
+  KeyIdentifier getIdentifier();
 
   @Nullable
-  KeyExpr getExpr();
-
-  @Nullable
-  KeyLetStatement getLetStatement();
-
-  @Nullable
-  KeyLockStatement getLockStatement();
+  KeyStatement getStatement();
 
 }

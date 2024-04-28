@@ -29,8 +29,8 @@ public class KeyAssignDestructImpl extends ASTWrapperPsiElement implements KeyAs
 
   @Override
   @NotNull
-  public List<KeyIdentifier> getIdentifierList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, KeyIdentifier.class);
+  public KeyIdentifiers getIdentifiers() {
+    return findNotNullChildByClass(KeyIdentifiers.class);
   }
 
 }

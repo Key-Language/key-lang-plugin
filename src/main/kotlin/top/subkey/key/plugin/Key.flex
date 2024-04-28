@@ -56,6 +56,10 @@ STRING_LITERAL = \" ( [^\\\"] | \\[^] )* ( \" {SUFFIX}? | \\ )?
     "<"                                             { return LT; }
     "["                                             { return LBRACK; }
     "]"                                             { return RBRACK; }
+    "("                                             { return LPAREN; }
+    ")"                                             { return RPAREN; }
+    "{"                                             { return LBRACE; }
+    "}"                                             { return RBRACE; }
     ","                                             { return COMMA; }
     ";"                                             { return SEMICOLON; }
     "let"                                           { return LET; }

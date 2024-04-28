@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface KeyAssignDestruct extends PsiElement {
 
   @NotNull
-  List<KeyIdentifier> getIdentifierList();
+  KeyIdentifiers getIdentifiers();
 
 }

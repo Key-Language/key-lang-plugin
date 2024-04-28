@@ -12,11 +12,16 @@ public interface KeyTypes {
   IElementType ASSIGN_DESTRUCT = new KeyElementType("ASSIGN_DESTRUCT");
   IElementType ASSIGN_SINGLE = new KeyElementType("ASSIGN_SINGLE");
   IElementType ASSIGN_TO = new KeyElementType("ASSIGN_TO");
+  IElementType BLOCK = new KeyElementType("BLOCK");
   IElementType CONST_STATEMENT = new KeyElementType("CONST_STATEMENT");
   IElementType EXPR = new KeyElementType("EXPR");
+  IElementType FUNC_DEF = new KeyElementType("FUNC_DEF");
   IElementType IDENTIFIER = new KeyElementType("IDENTIFIER");
+  IElementType IDENTIFIERS = new KeyElementType("IDENTIFIERS");
   IElementType LET_STATEMENT = new KeyElementType("LET_STATEMENT");
+  IElementType LOCK_STATEMENT = new KeyElementType("LOCK_STATEMENT");
   IElementType STATEMENT = new KeyElementType("STATEMENT");
+  IElementType STATEMENTS = new KeyElementType("STATEMENTS");
   IElementType VARIANT_EXPR = new KeyElementType("VARIANT_EXPR");
 
   IElementType AND = new KeyTokenType("&");
@@ -87,20 +92,35 @@ public interface KeyTypes {
       else if (type == ASSIGN_TO) {
         return new KeyAssignToImpl(node);
       }
+      else if (type == BLOCK) {
+        return new KeyBlockImpl(node);
+      }
       else if (type == CONST_STATEMENT) {
         return new KeyConstStatementImpl(node);
       }
       else if (type == EXPR) {
         return new KeyExprImpl(node);
       }
+      else if (type == FUNC_DEF) {
+        return new KeyFuncDefImpl(node);
+      }
       else if (type == IDENTIFIER) {
         return new KeyIdentifierImpl(node);
+      }
+      else if (type == IDENTIFIERS) {
+        return new KeyIdentifiersImpl(node);
       }
       else if (type == LET_STATEMENT) {
         return new KeyLetStatementImpl(node);
       }
+      else if (type == LOCK_STATEMENT) {
+        return new KeyLockStatementImpl(node);
+      }
       else if (type == STATEMENT) {
         return new KeyStatementImpl(node);
+      }
+      else if (type == STATEMENTS) {
+        return new KeyStatementsImpl(node);
       }
       else if (type == VARIANT_EXPR) {
         return new KeyVariantExprImpl(node);

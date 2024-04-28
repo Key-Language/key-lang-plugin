@@ -62,20 +62,26 @@
     PIPE        =  '|>'
   ]
 }
-
-keyFile ::= (statement ';'? | COMMENT)*
+keyFile ::= statements
+statements ::= (statement ';'? | COMMENT)*
 statement ::= (
     let_statement |
     const_statement |
+    lock_statement |
+    block |
     expr
     )
-let_statement ::= LET assign_def
+
+block ::= '{' statements '}'
+let_statement ::= LET (assign_def | func_def)
 const_statement ::= CONST assign_def
+lock_statement ::= CONST '(' identifier ')'
 assign_def ::= assign_to ('<' | '=') expr
+func_def ::= identifier '(' ')' (statement | block)
 assign_to ::= assign_single | assign_destruct
 assign_single ::= identifier
-assign_destruct ::= '[' ids ']'
-private ids ::= (identifier ',')* (identifier ','?)
+assign_destruct ::= '[' identifiers ']'
+identifiers ::= (identifier ',')* (identifier ','?)
 
 // expr
 expr ::=
